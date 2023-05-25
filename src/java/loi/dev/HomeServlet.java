@@ -13,6 +13,7 @@ import java.util.List;
 import loi.dev.data.dao.DatabaseDao;
 import loi.dev.data.model.Category;
 import loi.dev.data.model.Product;
+import loi.dev.util.Constants;
 
 /**
  *
@@ -23,7 +24,7 @@ public class HomeServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> productList = DatabaseDao.getInstance().getProductDao().findAll();
+        List<Product> productList = DatabaseDao.getInstance().getProductDao().findAll(Constants.VIEW_NUMBER);
         List<Product> hotProductList = DatabaseDao.getInstance().getProductDao().hot();
         List<Category> categoryList = DatabaseDao.getInstance().getCategoryDao().hotCategory();
         

@@ -130,4 +130,19 @@ public class GalleryImpl implements GalleryDao {
         return galleryList;
     }
 
+    @Override
+    public boolean deleteByProduct(int productId) {
+        String sql = "DELETE FROM GALLERIES WHERE PRODUCT_ID = ?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, productId);
+
+            return stmt.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

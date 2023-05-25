@@ -18,37 +18,45 @@ public class ProductImpl implements ProductDao {
     Connection con = MySQLDriver.getInstance().getConnection();
 
     @Override
-    public boolean insert(Product product) {
-        String sql = "INSERT INTO PRODUCTS VALUES(NULL, ?, ?, ?, ?, ?, ?)";
+    public int insert(Product product) {
+        String sql = "INSERT INTO PRODUCTS(ID, NAME, DESCRIPTION, PRICE, QUANTITY, CATEGORY_ID) VALUES(NULL, ?, ?, ?, ?, ?)";
         try {
-            PreparedStatement stmt = con.prepareStatement(sql);
+            PreparedStatement stmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
             stmt.setInt(4, product.getQuantity());
             stmt.setInt(5, product.getCategoryId());
-            stmt.setTimestamp(6, product.getCreatedAt());
 
             stmt.execute();
+            
+            ResultSet rs = stmt.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+            }
+
+            return generatedKey;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return false;
+        return 0;
     }
 
     @Override
     public boolean update(Product product) {
-        String sql = "UPDATE PRODUCTS SET name = ?, description = ?, price = ?, quantity = ?, view = ?,category_id = ? created_at = ? WHERE id = ?";
+        String sql = "UPDATE PRODUCTS SET name = ?, description = ?, price = ?, quantity = ?, view = ?, category_id = ? WHERE id = ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
             stmt.setInt(4, product.getQuantity());
-            stmt.setInt(5, product.getView());
+            stmt.setInt(5, product.getView() + 1);
             stmt.setInt(6, product.getCategoryId());
-            stmt.setTimestamp(7, product.getCreatedAt());
+            stmt.setInt(7, product.getId());
+
             return stmt.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -100,13 +108,13 @@ public class ProductImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> findAll() {
+    public List<Product> findAll(int limit) {
         // TODO Auto-generated method stub
-       List<Product> proList = new ArrayList<>();
+        List<Product> proList = new ArrayList<>();
         String sql = "SELECT * FROM PRODUCTS ORDER BY VIEW DESC LIMIT ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, Constants.VIEW_NUMBER2);
+            stmt.setInt(1, limit);
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {

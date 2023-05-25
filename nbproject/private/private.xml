@@ -3,13 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/web/admin/category/edit.jsp</file>
-            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/admin/category/DeleteCategoryServlet.java</file>
-            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/admin/category/EditCategoryServlet.java</file>
-            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/admin/category/CreateCategoryServlet.java</file>
-            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/CategoryServlet.java</file>
-            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/web/admin/category/create.jsp</file>
-            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/web/admin/category/index.jsp</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/admin/product/IndexProductServlet.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/data/impl/CategoryImpl.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/data/model/OrderItem.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/web/admin/product/edit.jsp</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/web/assets/admin/css/style.css</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/LoginServlet.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/web/admin/product/create.jsp</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/data/dao/CategoryDao.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/data/impl/ProductImpl.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/data/model/Product.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/admin/product/EditProductServlet.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/CheckoutServlet.java</file>
+            <file>file:/C:/Users/ACER%20NITRO/Documents/NetBeansProjects/CornSaladStore/src/java/loi/dev/HomeServlet.java</file>
         </group>
     </open-files>
 </project-private>

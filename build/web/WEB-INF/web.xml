@@ -48,6 +48,22 @@
         <servlet-name>EditCategoryServlet</servlet-name>
         <servlet-class>loi.dev.admin.category.EditCategoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IndexProductServlet</servlet-name>
+        <servlet-class>loi.dev.admin.product.IndexProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProductServlet</servlet-name>
+        <servlet-class>loi.dev.admin.product.EditProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>loi.dev.admin.product.DeleteProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateProductServlet</servlet-name>
+        <servlet-class>loi.dev.admin.product.CreateProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/HomeServlet</url-pattern>
@@ -95,5 +111,21 @@
     <servlet-mapping>
         <servlet-name>EditCategoryServlet</servlet-name>
         <url-pattern>/EditCategoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IndexProductServlet</servlet-name>
+        <url-pattern>/IndexProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductServlet</servlet-name>
+        <url-pattern>/EditProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateProductServlet</servlet-name>
+        <url-pattern>/CreateProductServlet</url-pattern>
     </servlet-mapping>
 </web-app>

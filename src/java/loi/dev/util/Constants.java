@@ -9,11 +9,14 @@ package loi.dev.util;
  * @author ACER NITRO
  */
 public class Constants {
+
     public static final String DB_URL = "jdbc:mysql://localhost:3306/shop";
     public static final String USER = "root";
     public static final String PASS = "123456";
-    
+
     public static final int VIEW_NUMBER = 4;
-     public static final int VIEW_NUMBER2 = 8;
-     public static final int RELATED_NUMBER = 4;
+    public static final int ALL = 10000;
+    public static final int RELATED_NUMBER = 4;
+
+    public static final String UPLOAD_DIR = "assets/admin/img/products";
 }

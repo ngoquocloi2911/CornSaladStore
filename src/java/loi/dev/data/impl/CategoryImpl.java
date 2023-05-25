@@ -67,9 +67,10 @@ public class CategoryImpl implements CategoryDao {
     @Override
     public Category find(int id) {
         // TODO Auto-generated method stub
-        String sql = "SELECT * FROM CATEGORIES";
+        String sql = "SELECT * FROM CATEGORIES WHERE ID = ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {

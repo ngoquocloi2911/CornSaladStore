@@ -16,14 +16,12 @@ public class Product {
     private int categoryId;
     private Timestamp createdAt;
 
-    public Product(String name, String description, double price, int quantity, int view, int categoryId, Timestamp createdAt) {
+    public Product(String name, String description, double price, int quantity, int categoryId) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
-        this.view = view;
         this.categoryId = categoryId;
-        this.createdAt = createdAt;
     }
 
     public Product(int id, String name, String description, double price, int quantity, int view, int categoryId, Timestamp createdAt) {

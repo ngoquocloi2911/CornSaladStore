@@ -6,7 +6,7 @@ import loi.dev.data.model.Product;
 
 public interface ProductDao {
 
-    public boolean insert(Product product);
+    public int insert(Product product);
 
     public boolean update(Product product);
 
@@ -14,7 +14,7 @@ public interface ProductDao {
 
     public Product find(int productId);
 
-    public List<Product> findAll();
+    public List<Product> findAll(int limit);
 
     public List<Product> hot();
 

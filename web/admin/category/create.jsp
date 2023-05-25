@@ -42,7 +42,9 @@
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
-
+                 <!-- Topbar -->
+                    <%@include file="../inc/header.jsp" %>
+                    <!-- End of Topbar -->
                 <!-- Main Content -->
                 <div class="container-fluid">
                     <form action="CreateCategoryServlet" method="post">

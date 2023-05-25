@@ -11,7 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import loi.dev.data.dao.Database;
+import jakarta.servlet.http.HttpSession;
 import loi.dev.data.dao.DatabaseDao;
 import loi.dev.data.dao.UserDAO;
 import loi.dev.data.model.User;
@@ -25,22 +25,34 @@ public class LoginServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            response.sendRedirect("HomeServlet");
+        }
+        
         request.getRequestDispatcher("login.jsp").include(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        UserDAO userDAO = DatabaseDao.getInstance().getUserDao();
-        User user = userDAO.find(email, password);
-        PrintWriter out = response.getWriter();
-        if( user == null)
-        {
-            out.println("login fail");
-        }else{
-            out.println("login success");
+
+        UserDAO userDao = DatabaseDao.getInstance().getUserDao();
+        User user = userDao.find(email, password);
+
+        if (user == null) {
+            response.sendRedirect("LoginServlet");
+            session.setAttribute("errors", "Login Failed");
+
+        } else {
+            session.setAttribute("user", user);
+            String url = request.getHeader("referer");
+            String referer = request.getParameter("referer");
+            getServletContext().getRequestDispatcher(referer).forward(request, response);
         }
     }
 
