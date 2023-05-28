@@ -5,10 +5,7 @@
 package loi.dev;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -21,7 +18,7 @@ import loi.dev.data.model.User;
  * @author ACER NITRO
  */
 public class LoginServlet extends BaseServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,7 +26,7 @@ public class LoginServlet extends BaseServlet {
         if (session.getAttribute("user") != null) {
             response.sendRedirect("HomeServlet");
         }
-        
+
         request.getRequestDispatcher("login.jsp").include(request, response);
     }
 
@@ -49,10 +46,8 @@ public class LoginServlet extends BaseServlet {
             session.setAttribute("errors", "Login Failed");
 
         } else {
+            response.sendRedirect("HomeServlet");
             session.setAttribute("user", user);
-            String url = request.getHeader("referer");
-            String referer = request.getParameter("referer");
-            getServletContext().getRequestDispatcher(referer).forward(request, response);
         }
     }
 

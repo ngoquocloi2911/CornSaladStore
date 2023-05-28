@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 import loi.dev.data.dao.OrderDao;
 import loi.dev.data.driver.MySQLDriver;
 import loi.dev.data.model.Order;
@@ -18,13 +17,12 @@ public class OrderImpl implements OrderDao {
 
     @Override
     public boolean insert(Order order) {
-        String sql = "INSERT INTO ORDERS VALUES(NULL, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ORDERS(ID, CODE, STATUS, USER_ID) VALUES(NULL, ?, ?, ?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, order.getCode());
             stmt.setString(2, order.getStatus());
             stmt.setInt(3, order.getUserId());
-            stmt.setTimestamp(4, order.getCreatedAt());
 
             stmt.execute();
         } catch (SQLException e) {
@@ -117,8 +115,26 @@ public class OrderImpl implements OrderDao {
 
     @Override
     public List<Order> findByUser(int userId) {
-        // TODO Auto-generated method stub
-        return null;
+        List<Order> orderList = new ArrayList<>();
+        String sql = "SELECT * FROM ORDERS WHERE user_id = ?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, userId);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String code = rs.getString("code");
+                String status = rs.getString("status");
+                Timestamp createdAt = rs.getTimestamp("created_at");
+
+                orderList.add(new Order(id, code, status, userId, createdAt));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return orderList;
     }
 
     @Override
@@ -128,7 +144,7 @@ public class OrderImpl implements OrderDao {
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, code);
-            
+
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -143,6 +159,11 @@ public class OrderImpl implements OrderDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Order> findByStatus(String pending) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

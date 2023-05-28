@@ -1,6 +1,7 @@
 package loi.dev.data.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import loi.dev.data.dao.DatabaseDao;
 
@@ -71,8 +72,11 @@ public class Order {
         this.createdAt = createdAt;
     }
 
-    public OrderItem orderItem() {
-        return DatabaseDao.getInstance().getOrderItemDao().find(id);
+    public List<OrderItem> getOrderItems() {
+        return DatabaseDao.getInstance().getOrderItemDao().findByOder(id);
     }
 
+      public User getUser() {
+        return DatabaseDao.getInstance().getUserDao().find(userId);
+    }
 }

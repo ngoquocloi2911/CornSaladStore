@@ -19,4 +19,8 @@ public interface OrderDao {
     public List<Order> findByUser(int userId);
 
     public Order findByCode(String code);
+
+    public List<Order> findByStatus(String pending);
+
+   
 }

@@ -4,6 +4,7 @@
  */
 package loi.dev;
 
+import com.mysql.cj.Messages;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -57,7 +58,7 @@ public class CheckoutServlet extends BaseServlet {
                 DatabaseDao.getInstance().getOrderItemDao().insert(orderItem);
             }
         }
-
+        session.setAttribute("Messages", "Checkout Success");
         session.removeAttribute("cart");
     }
 

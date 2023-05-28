@@ -64,6 +64,34 @@
         <servlet-name>CreateProductServlet</servlet-name>
         <servlet-class>loi.dev.admin.product.CreateProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>loi.dev.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>loi.dev.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IndexOrderServlet</servlet-name>
+        <servlet-class>loi.dev.admin.order.IndexOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>loi.dev.admin.order.IndexOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditOrderServlet</servlet-name>
+        <servlet-class>loi.dev.admin.order.EditOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderItemServlet</servlet-name>
+        <servlet-class>loi.dev.admin.OrderItem.OrderItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PageNotFound</servlet-name>
+        <servlet-class>loi.dev.PageNotFound</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/HomeServlet</url-pattern>
@@ -128,4 +156,42 @@
         <servlet-name>CreateProductServlet</servlet-name>
         <url-pattern>/CreateProductServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/OrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IndexOrderServlet</servlet-name>
+        <url-pattern>/IndexOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditOrderServlet</servlet-name>
+        <url-pattern>/EditOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderItemServlet</servlet-name>
+        <url-pattern>/OrderItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PageNotFound</servlet-name>
+        <url-pattern>/PageNotFound</url-pattern>
+    </servlet-mapping>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/PageNotFound</location>
+    </error-page>
+    
+    <error-page>
+        <exception-type>jakarta.servlet.ServletException</exception-type>
+        <location>/PageNotFound</location>
+    </error-page>
 </web-app>

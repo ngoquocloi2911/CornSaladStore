@@ -74,15 +74,6 @@
                                             <th>#</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>Thumbnail</th>
-                                            <th>Name</th>
-                                            <th>#</th>
-                                            <th>#</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <c:set var="index" value="0"/>
                                         <c:forEach items="${categoryList}" var="category">

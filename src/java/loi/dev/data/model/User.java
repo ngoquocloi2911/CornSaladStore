@@ -1,6 +1,8 @@
 package loi.dev.data.model;
 
+import java.util.List;
 import loi.dev.data.dao.Database;
+import loi.dev.data.dao.DatabaseDao;
 
 public class User {
 	private int id;
@@ -49,6 +51,10 @@ public class User {
 	public Order order() {
 		return Database.getInstance().getOrderDao().find(id);
 	}
+        
+        public List<Order> getOrders() {
+        return DatabaseDao.getInstance().getOrderDao().findByUser(id);
+    }
 	
 
 }

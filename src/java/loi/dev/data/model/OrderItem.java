@@ -66,6 +66,10 @@ public class OrderItem {
     public void setProductId(int productId) {
         this.productId = productId;
     }
+    
+     public Order getOrder() {
+        return DatabaseDao.getInstance().getOrderDao().find(id);
+    }
 
     public Product getProduct() {
         return DatabaseDao.getInstance().getProductDao().find(productId);

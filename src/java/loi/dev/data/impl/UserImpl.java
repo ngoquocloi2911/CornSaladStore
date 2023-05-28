@@ -98,11 +98,12 @@ public class UserImpl implements UserDAO {
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String role = rs.getString("role");
 
-                users.add(new User(email, password, role));
+                users.add(new User(id, email, password, role));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block

@@ -42,7 +42,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <div class="main-layout">
         <div class="main-form">
             <h2>Fill out the form below to login</h2>
-            <form action="home.jsp" method="post">
+            <form action="LoginServlet" method="post">
                 <div class="form-sub-w3">
                     <input type="email" name="email" placeholder="Username " required="">
                     <div class="icon-w3">
@@ -58,7 +58,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <label class="anim">
                     <input type="checkbox" class="checkbox">
                     <span>Remember Me</span>
-                    <a href="#">Register</a>
+                    <a href="RegisterServlet">Register</a>
                 </label>
                 <div class="clear"></div>
                 <div class="submit-agileits">

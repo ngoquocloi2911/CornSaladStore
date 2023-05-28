@@ -116,9 +116,26 @@ public class OrderItemImpl implements OrderItemDao {
 	}
 
 	@Override
-	public List<OrderItem> findByOder(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderItem> findByOder(int orderId) {
+		List<OrderItem> orderItemList = new ArrayList<>();
+        String sql = "SELECT * FROM ORDER_ITEMS WHERE order_id = ?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, orderId);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int quantity = rs.getInt("quantity");
+                double price = rs.getDouble("price");
+                int productId = rs.getInt("product_id");
+                orderItemList.add( new OrderItem(id, quantity, price, orderId, productId));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return orderItemList;
 	}
 
 	@Override
