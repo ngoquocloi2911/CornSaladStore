@@ -15,15 +15,15 @@ public class OrderItemImpl implements OrderItemDao {
 	Connection con = MySQLDriver.getInstance().getConnection();
 
 	@Override
-	public boolean insert(OrderItem order_Item) {
+	public boolean insert(OrderItem orderItem) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO ORDER_ITEMS VALUES(NULL, ?, ?, ?, ?,)";
+		String sql = "INSERT INTO ORDER_ITEMS(ID, QUANTITY, PRICE, ORDER_ID, PRODUCT_ID) VALUES(NULL, ?, ?, ?, ?)";
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, order_Item.getQuantity());
-			stmt.setDouble(2, order_Item.getPrice());
-			stmt.setInt(3, order_Item.getOrderId());
-			stmt.setInt(4, order_Item.getProductId());
+			stmt.setInt(1, orderItem.getQuantity());
+			stmt.setDouble(2, orderItem.getPrice());
+			stmt.setInt(3, orderItem.getOrderId());
+			stmt.setInt(4, orderItem.getProductId());
 			
 			stmt.execute();
 		} catch (SQLException e) {
@@ -34,15 +34,15 @@ public class OrderItemImpl implements OrderItemDao {
 	}
 
 	@Override
-	public boolean update(OrderItem order_Item) {
+	public boolean update(OrderItem orderItem) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE ORDER_ITEMS SET quatity = ?, price = ?, order_id = ?, product_id = ? WHERE id = ?";
+		String sql = "UPDATE ORDER_ITEMS SET quantity = ?, price = ?, order_id = ?, product_id = ? WHERE id = ?";
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1,order_Item.getQuantity());
-			stmt.setDouble(2, order_Item.getPrice());
-			stmt.setInt(3, order_Item.getOrderId());
-			stmt.setInt(4, order_Item.getProductId());
+			stmt.setInt(1,orderItem.getQuantity());
+			stmt.setDouble(2, orderItem.getPrice());
+			stmt.setInt(3, orderItem.getOrderId());
+			stmt.setInt(4, orderItem.getProductId());
 			return stmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -117,7 +117,7 @@ public class OrderItemImpl implements OrderItemDao {
 
 	@Override
 	public List<OrderItem> findByOder(int orderId) {
-		List<OrderItem> orderItemList = new ArrayList<>();
+	List<OrderItem> orderItemList = new ArrayList<>();
         String sql = "SELECT * FROM ORDER_ITEMS WHERE order_id = ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);

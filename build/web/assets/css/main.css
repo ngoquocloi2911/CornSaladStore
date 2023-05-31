@@ -38,6 +38,8 @@ body {
     display: flex;
     padding-left: 14px;
     position: relative;
+    align-items: center;
+    
 }
 
 
@@ -73,10 +75,15 @@ body {
 .header__navbar-icon {
     padding: 0 2px;
     font-size: 1.3rem;
+    text-decoration: none;
+    color: var(--white-color);
 }
 
 .header_navbar-link-icon {
     padding-right: 10px;
+}
+.header__navbar-user{
+    padding-left: 4px;
 }
 
 /* header - notify */
@@ -339,8 +346,8 @@ span.header__search-heart-lable {
     padding: 0px 5px;
     background-color: var(--white-color);
     border-radius: 50%;
-    top: 4%;
-    right: 10%;
+    top: -45%;
+    right: 16%;
     color: var(--primary-color);
 
 }

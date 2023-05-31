@@ -29,9 +29,10 @@ public class CartServlet extends BaseServlet {
         if (cart == null) {
             cart = new ArrayList<>();
         }
-
+//        ? thầy
         Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, cart);
         request.setAttribute("cart", cart);
+        session.setAttribute("total", total(cart));
         request.getRequestDispatcher("cart.jsp").include(request, response);
     }
 
@@ -112,6 +113,14 @@ public class CartServlet extends BaseServlet {
             }
         }
         session.setAttribute("cart", cart);
+    }
+
+    private int total(List<OrderItem> cart) {
+        int sum = 0;
+        for (OrderItem ods : cart) {
+            sum += ods.getPrice() * ods.getQuantity();
+        }
+        return sum;
     }
 
 }

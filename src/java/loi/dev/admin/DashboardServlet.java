@@ -6,9 +6,9 @@ package loi.dev.admin;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import loi.dev.data.dao.DatabaseDao;
 import loi.dev.data.dao.OrderDao;
@@ -17,12 +17,14 @@ import loi.dev.data.dao.UserDAO;
 import loi.dev.data.model.Order;
 import loi.dev.data.model.OrderItem;
 import loi.dev.data.model.Product;
+import loi.dev.util.Constants;
+import loi.dev.util.GetDateTime;
 
 /**
  *
  * @author ACER NITRO
  */
-public class DashboardServlet extends HttpServlet {
+public class DashboardServlet extends BaseAdminServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +49,15 @@ public class DashboardServlet extends HttpServlet {
 
         List<Order> orderPendingList = orderDao.findByStatus("pending");
         request.setAttribute("orderPendingList", orderPendingList);
-        
+
+        // Chart
+        List<String> dateList = GetDateTime.getDates(Constants.NUMBER_DAY);
+        request.setAttribute("dateList", dateList);
+        List<Integer> countEachDay = new ArrayList<>();
+         for(int i = 0; i < Constants.NUMBER_DAY; i++){
+            countEachDay.add(orderDao.countOrderByDay(dateList.get(i)));
+        }
+        request.setAttribute("countEachDay", countEachDay);
         request.getRequestDispatcher("admin/dashboard.jsp").include(request, response);
     }
 
@@ -56,7 +66,7 @@ public class DashboardServlet extends HttpServlet {
             throws ServletException, IOException {
     }
 
-   private double getTotal() {
+    private double getTotal() {
         double total = 0;
         OrderDao orderDao = DatabaseDao.getInstance().getOrderDao();
         List<Order> orderList = orderDao.findByStatus("finished");
@@ -66,6 +76,7 @@ public class DashboardServlet extends HttpServlet {
         }
         return total;
     }
+
     private double sum(List<OrderItem> orderItemList) {
         double s = 0;
         for (OrderItem orderItem : orderItemList) {

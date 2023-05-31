@@ -29,3 +29,22 @@ input.checkbox:after{
     width: 40%;
     padding: 4em 2em;
 }
+.form-sub-lable{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.form-sub-lable label{
+    margin-right: 12px;
+}
+.form-sub-select{
+    flex: 1;
+    padding: 10px 0;
+    background-color: transparent;
+    color: #fff;
+}
+.form-sub-select option{
+    background-color: transparent;
+    color: #000;
+}

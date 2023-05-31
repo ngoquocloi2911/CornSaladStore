@@ -88,3 +88,9 @@ html{
 
     }
 }
+.error{
+    color: #f10707;
+    font-size: 1.8rem;
+    padding-left: 4px;
+    background-color: #dce314;
+}

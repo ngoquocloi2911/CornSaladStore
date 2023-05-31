@@ -89,8 +89,9 @@
                                 <ul class="header__navbar-list">
                                     <c:if test="${sessionScope.user != null}">
                                         <li class="header__navbar-item header__navbar-item--separa">
-                                            <a href="" class="header__navbar-link">
-                                                <a class="header__navbar-icon fa-solid fa-user">${sessionScope.user.email}</a>
+
+                                            <a class="header__navbar-icon fa-solid fa-user "></a>
+                                            <a href="" class="header__navbar-link header__navbar-user ">${sessionScope.user.email}</a>
                                             </a>
                                             <div class="header__navbar-profile">
                                                 <ul class="header__navbar-profile-list">
@@ -107,7 +108,7 @@
 
                                     <c:if test="${sessionScope.user == null}">
                                         <li class="header__navbar-item">
-                                            <a href="LoginServlet">Log in/ Sign up</a>
+                                            <a  class="header__navbar-link" href="LoginServlet">Log in/ Sign up</a>
                                         </li>
                                     </c:if>
                                     <li class="header__navbar-item header__navbar-item--separa">
@@ -148,34 +149,11 @@
                             </div>
                             <div class="header__search">
                                 <form class="header__search-content" action="SearchServlet" method="get">
-                                    <select name="" id="" class="header__search-select">
-                                        <option value="">All categories</option>
-                                        <option value="">Automobiles & Motorcycles</option>
-                                        <option value="">&nbsp;Car Electronics</option>
-                                        <option value="">&nbsp;&nbsp;Car Camera</option>
-                                        <option value="">&nbsp;&nbsp;Car DVR</option>
-                                        <option value="">&nbsp;&nbsp;Car DVRs</option>
-                                        <option value="">&nbsp;&nbsp;Car Electrical Appliances</option>
-                                        <option value="">&nbsp;&nbsp;&nbsp;Audio</option>
-                                        <option value="">&nbsp;&nbsp;&nbsp;Marine GPS</option>
-                                        <option value="">&nbsp;&nbsp;Car Video Players</option>
-                                        <option value="">&nbsp;&nbsp;Radar Detectors</option>
-                                        <option value="">Car Video Players</option>
-                                        <option value="">&nbsp;GPS & Accessories</option>
-                                        <option value="">&nbsp;&nbsp;Car Video Players</option>
-                                        <option value="">&nbsp;&nbsp;Radar Detectors</option>
-                                        <option value="">GPS & Accessories</option>
-                                        <option value="">&nbsp;&nbsp;Car Video Players</option>
-                                        <option value="">&nbsp;&nbsp;GPS & Accessories</option>
-                                        <option value="">Car Video Players</option>
-                                        <option value="">&nbsp;&nbsp;Radar Detectors</option>
-                                        <option value="">GPS & Accessories</option>
-                                        <option value="">GPS & Accessories</option>
-                                        <option value="">&nbsp;&nbsp;Car Video Players</option>
-                                        <option value="">&nbsp;&nbsp;GPS & Accessories</option>
-                                        <option value="">Car Video Players</option>
-                                        <option value="">&nbsp;&nbsp;Radar Detectors</option>
-                                        <option value="">GPS & Accessories</option>
+                                    <select name="categoryId" id="" class="header__search-select">
+                                        <option value="">All Category</option>
+                                        <c:forEach items="${categoryList}" var="category">
+                                            <option value="${category.id}">${category.name}</option>
+                                        </c:forEach>
                                     </select>
                                     <div class="header__search-wrap">
                                         <input type="text" name="key" class="header__search-input" placeholder="Type here..."
@@ -205,7 +183,10 @@
                                         <c:if test="${sessionScope.cart != null}">
                                             <span class="header__search-heart-lable">${sessionScope.cart.size()}</span>
                                         </c:if>
-                                        <span class="header__search-heart-price">$0.00</span>
+                                        <span class="header__search-heart-price">
+                                            <fmt:setLocale value = "en_US"/>
+                                            <fmt:formatNumber type="currency" value = "${total}" />
+                                        </span>
                                     </a>
                                 </div>
                             </div>
@@ -262,7 +243,7 @@
                                 </div>
                                 <div class="menu-wrap">
                                     <ul class="menu-list">
-                                        <li class="menu-item"><a class="menu-link" href="">Home</a></li>
+                                        <li class="menu-item"><a class="menu-link" href="HomeServlet">Home</a></li>
                                         <li class="menu-item"><a class="menu-link" href="">Elements</a></li>
                                         <li class="menu-item"><a class="menu-link" href="">Demos</a></li>
                                         <li class="menu-item"><a class="menu-link" href="">Shop</a></li>

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import loi.dev.data.dao.UserDAO;
 import loi.dev.data.driver.MySQLDriver;
 import loi.dev.data.model.User;
@@ -18,7 +17,7 @@ public class UserImpl implements UserDAO {
     @Override
     public boolean insert(User user) {
         // TODO Auto-generated method stub
-        String sql = "INSERT INTO USERS VALUES(null, ?, ?, ?)";
+        String sql = "INSERT INTO USERS(ID, EMAIL, PASSWORD, ROLE) VALUES(null, ?, ?, ?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, user.getEmail());
@@ -92,10 +91,10 @@ public class UserImpl implements UserDAO {
     @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT * FROM Users";
+        String sql = "SELECT * FROM Users WHERE ID > ? ";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-
+            stmt.setInt(1, 0);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -123,6 +122,26 @@ public class UserImpl implements UserDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
+                String role = rs.getString("role");
+                return new User(id, email, password, role);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public User find(String email) {
+        String sql = "SELECT * FROM USERS WHERE EMAIL = ?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String password = rs.getString("password");
                 String role = rs.getString("role");
                 return new User(id, email, password, role);
             }

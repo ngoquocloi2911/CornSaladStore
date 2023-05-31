@@ -20,7 +20,9 @@ public interface OrderDao {
 
     public Order findByCode(String code);
 
-    public List<Order> findByStatus(String pending);
+    public List<Order> findByStatus(String status);
+    
+     public int countOrderByDay(String date);
 
    
 }

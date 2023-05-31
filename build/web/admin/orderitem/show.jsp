@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +71,7 @@
                                             <th>STT</th>
                                             <th>Product</th>
                                             <th>Quantity</th>
-                                            <th>Order</th>
+                                            <th>Code</th>
                                             <th>Price</th>
                                             <th>Total</th>
                                         </tr>
@@ -84,8 +85,14 @@
                                                 <td> <a href="OrderItemServlet?orderId=${orderItem.id}">${orderItem.product.name}</td>
                                                 <td>${orderItem.quantity}</td>
                                                 <td>${orderItem.order.code}</td>
-                                                <td>${orderItem.price}</td>
-                                                <td>${orderItem.price * orderItem.quantity}</td>
+                                                <td>
+                                                    <fmt:setLocale value = "en_US"/>
+                                                    <fmt:formatNumber type="currency" value = "${orderItem.price}" /> 
+                                                </td>
+                                                <td>
+                                                    <fmt:setLocale value = "en_US"/>
+                                                    <fmt:formatNumber type="currency" value = "${orderItem.price * orderItem.quantity}" /> 
+                                                </td>
 
                                             </tr>
                                         </c:forEach>

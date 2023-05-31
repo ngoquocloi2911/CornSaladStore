@@ -1,6 +1,5 @@
 package loi.dev.data.model;
 
-import loi.dev.data.dao.Database;
 import loi.dev.data.dao.DatabaseDao;
 
 public class OrderItem {
@@ -68,7 +67,7 @@ public class OrderItem {
     }
     
      public Order getOrder() {
-        return DatabaseDao.getInstance().getOrderDao().find(id);
+        return DatabaseDao.getInstance().getOrderDao().find(orderId);
     }
 
     public Product getProduct() {

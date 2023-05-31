@@ -36,8 +36,8 @@
                                 <img src="${product.thumbnail}" alt="" class="product-image">
                             </a>
                             <ul class="product-icon">
-                                <li> <a href=""><i class="fa-regular fa-eye"></i></a></li>
-                                <li> <a href=""><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li> <a href="ProductDetailServlet?productId=${product.id}"><i class="fa-regular fa-eye"></i></a></li>
+                                <li> <a href="CartServlet"><i class="fa-solid fa-cart-shopping"></i></a></li>
                                 <li> <a href=""><i class="fa-solid fa-arrows-rotate"></i></a></li>
                                 <li> <a href=""><i class="fa-regular fa-heart"></i></a></li>
                             </ul>
@@ -127,7 +127,7 @@
             </div>
             <!-- top Featured Categories -->
             <div class="row">
-                <c:forEach items="${categoryList}" var="category">
+                <c:forEach items="${hotcategoryList}" var="category">
                     <div class="col-md-3">
                         <div class="Featured-categories">
                             <a href="CategoryServlet?categoryId=${category.id}">

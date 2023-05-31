@@ -5,9 +5,9 @@ import loi.dev.data.model.OrderItem;
 
 public interface OrderItemDao {
 
-    public boolean insert(OrderItem order_Item);
+    public boolean insert(OrderItem orderItem);
 
-    public boolean update(OrderItem order_Item);
+    public boolean update(OrderItem orderItem);
 
     public boolean delete(int id);
 

@@ -10,6 +10,8 @@ import java.util.List;
 import loi.dev.data.dao.OrderDao;
 import loi.dev.data.driver.MySQLDriver;
 import loi.dev.data.model.Order;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class OrderImpl implements OrderDao {
 
@@ -68,10 +70,10 @@ public class OrderImpl implements OrderDao {
 
     @Override
     public Order find(int id) {
-        String sql = "SELECT * FROM ORDERS";
+        String sql = "SELECT * FROM ORDERS WHERE ID = ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String code = rs.getString("code");
@@ -137,10 +139,31 @@ public class OrderImpl implements OrderDao {
         return orderList;
     }
 
+ 
+    @Override
+    public List<Order> findByStatus(String status) {
+        List<Order> orderList = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM ORDERS WHERE STATUS = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, status);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String code = rs.getString("code");
+                int userId = rs.getInt("user_id");
+                Timestamp createdAt = rs.getTimestamp("created_at");
+                orderList.add(new Order(id, code, status, userId, createdAt));
+            }
+        } catch (SQLException ex) {
+        }
+
+        return orderList;
+    }
+
     @Override
     public Order findByCode(String code) {
-        List<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM ORDERS WHERE CODE=? LIMIT 1";
+        String sql = "SELECT * FROM ORDERS WHERE CODE= ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, code);
@@ -162,8 +185,21 @@ public class OrderImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> findByStatus(String pending) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int countOrderByDay(String date) {
+        int count = 0;
+        String sql = "SELECT COUNT(*) AS count FROM orders where date(created_at)=?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, date);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt("count");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count;
     }
+    
 
 }

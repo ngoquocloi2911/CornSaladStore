@@ -91,8 +91,11 @@
                                 </div>
                                 <div class="form-action-right">
                                     <div class="form-action-right-ask">
-                                        <i class="right-ask-icon fa-solid fa-envelope"></i>
-                                        <span class="right-ask-content">Ask for an estimate</span>
+                                        <span class="right-ask-content"> Total:</span>
+                                        <span class="right-ask-content">
+                                            <fmt:setLocale value = "en_US"/>
+                                            <fmt:formatNumber type="currency" value = "${total}" />
+                                        </span>
                                     </div>
                                     <div class="form-action-right-btn"><a href="CheckoutServlet"
                                                                           class="form-action-right-link">Checkout All</a></div>

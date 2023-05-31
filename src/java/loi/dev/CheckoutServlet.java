@@ -4,7 +4,6 @@
  */
 package loi.dev;
 
-import com.mysql.cj.Messages;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,11 +26,10 @@ public class CheckoutServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+            HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            response.setHeader("referer", "CheckoutServlet");
-            response.sendRedirect("LoginServlet?referer=CheckoutServlet");
+            response.sendRedirect("LoginServlet");
         } else {
             processCheckout(request, user.getId());
             response.sendRedirect("CartServlet");
@@ -46,7 +44,8 @@ public class CheckoutServlet extends BaseServlet {
 
     private void processCheckout(HttpServletRequest request, int userId) {
         OrderDao orderDao = DatabaseDao.getInstance().getOrderDao();
-        Order order = new Order(StringHelper.randomString(8), Order.PENDING, userId);
+        String code = StringHelper.randomString(9);
+        Order order = new Order(code, Order.PENDING, userId);
         orderDao.insert(order);
 
         order = orderDao.findByCode(order.getCode());

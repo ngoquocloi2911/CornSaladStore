@@ -60,7 +60,7 @@ form {
     align-items: center;
 }
 
-.form-sub-w3 input {
+.form-sub-w3 input, .form-sub-lable {
     width: 85%;
     padding: 15px 66px 15px 19px;
     background-color: rgba(0, 0, 0, 0.16);
@@ -74,6 +74,8 @@ form {
     font-family: 'Open Sans', sans-serif;
     flex: 1;
 }
+
+
 
 .icon-w3 {
     position: absolute;
@@ -225,3 +227,4 @@ label.anim a:hover {
 .footer a:hover {
     color: var(--white-color);
 }
+

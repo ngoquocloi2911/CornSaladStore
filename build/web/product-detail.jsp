@@ -48,10 +48,7 @@
                             </div>
                             <a href="#" class="product-content-right-cmt"> (1 customer review)</a>
                         </div>
-                        <span class="product-content-right-content">Lorem ipsum dolor sit amet, consectetur
-                            adipisicing elit. Vero quos, ullam quidem suscipit, doloribus laboriosam unde libero
-                            necessitatibus ipsa autem excepturi dolorum modi voluptatem quia cum optio!
-                            Adipisci, aut placeat!</span>
+                        <span class="product-content-right-content">${product.description}</span>
                         <form class="product-content-right-form" action="CartServlet" method="post">
                             <input type="hidden" name="action" value="create"/>
                             <input type="hidden" name="productId" value="${product.id}"/>
@@ -66,8 +63,8 @@
                         <a href="#" class="product-content-right-reload"><i
                                 class="product-content-right-icon fa-solid fa-arrows-rotate"></i>Add
                             to compare</a>
-                        <span class="product-content-right-category">Category: <a href=""
-                                                                                  class="content-right-category-link">Engine</a></span>
+                        <span class="product-content-right-category">Category: <a href="CategoryServlet?categoryId=${product.category.id}"
+                                                                                  class="content-right-category-link">${product.category.name}</a></span>
                         <div class="product-content-right-tag">Tags:
                             <a href="" class="product-content-right-link">accessories</a>,
                             <a href="" class="product-content-right-link">best trend</a>,

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -54,6 +55,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <div class="icon-w3">
                         <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                     </div>
+                </div>
+                <div class="error" >
+                    ${errors}
+                    <c:remove var="errors" scope="session" />
                 </div>
                 <label class="anim">
                     <input type="checkbox" class="checkbox">

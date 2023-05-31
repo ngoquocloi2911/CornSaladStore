@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +43,7 @@
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
-
+                 <%@include file="../inc/header.jsp" %>
                 <!-- Main Content -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -86,7 +87,10 @@
                                                 </td>
                                                 <td>${product.name}</td>
                                                 <td>${product.description}</td>
-                                                <td>${product.price}</td>
+                                                <td>
+                                                    <fmt:setLocale value = "en_US"/>
+                                                    <fmt:formatNumber type="currency" value = "${product.price}" /> 
+                                                </td>
                                                 <td>${product.quantity}</td>
                                                 <td>${product.category.name}</td>
                                                 <td>

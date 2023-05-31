@@ -78,7 +78,7 @@
                                         <c:set var="index" value="0"/>
                                         <c:forEach items="${orderList}" var="order">
                                         <c:set var="index" value="${index + 1}"/>
-                                            <tr <c:if test="${order.status == 'finished'}">class="order-finished"</c:if>>
+                                            <tr >
                                                 <td>${index}</td>
                                                 <td> <a href="OrderItemServlet?orderId=${order.id}">${order.code}</td>
                                                 <td>${order.status}</td>

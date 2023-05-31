@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +70,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Total User</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">${numberUser} User</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -86,8 +87,8 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Earnings (Annual)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                    Total product</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">${numberProduct} Product</div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -103,11 +104,11 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Order Pending
                                                 </div>
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col-auto">
-                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${orderPendingList.size()} Order Pending</div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="progress progress-sm mr-2">
@@ -133,8 +134,11 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    Pending Requests</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                    Total Revenue</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <fmt:setLocale value = "en_US"/>
+                                                    <fmt:formatNumber type="currency" value = "${total}" /> 
+                                                </div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -246,25 +250,28 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-        
+        <script>
+            var labels = [<c:forEach items="${dateList}" var="date">"${date}",</c:forEach>]
+            var data = [<c:forEach items="${countEachDay}" var="count">${count},</c:forEach>]
+                </script>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="./assets/admin/vendor/jquery/jquery.min.js"></script>
-        <script src="./assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- Bootstrap core JavaScript-->
+                <script src="./assets/admin/vendor/jquery/jquery.min.js"></script>
+                <script src="./assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="./assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Core plugin JavaScript-->
+                <script src="./assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="./assets/admin/js/sb-admin-2.min.js"></script>
+                <!-- Custom scripts for all pages-->
+                <script src="./assets/admin/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="./assets/admin/vendor/chart.js/Chart.min.js"></script>
+                <!-- Page level plugins -->
+                <script src="./assets/admin/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="./assets/admin/js/demo/chart-area-demo.js"></script>
-        <script src="./assets/admin/js/demo/chart-pie-demo.js"></script>
+                <!-- Page level custom scripts -->
+                <script src="./assets/admin/js/demo/chart-area-demo.js"></script>
+                <script src="./assets/admin/js/demo/chart-pie-demo.js"></script>
 
-    </body>
+                </body>
 
-</html>
+                </html>

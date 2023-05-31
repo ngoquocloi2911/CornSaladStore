@@ -22,11 +22,14 @@ public class SearchServlet extends BaseServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String key = request.getParameter("key");
+//        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+
         List<Product> productList = DatabaseDao.getInstance().getProductDao().findByName(key);
-        
+
         request.setAttribute("productList", productList);
         request.getRequestDispatcher("category.jsp").include(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
