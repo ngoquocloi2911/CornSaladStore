@@ -41,14 +41,17 @@ public class RegisterServlet extends BaseServlet {
         if (email.isEmpty() || password.isEmpty() || repeatPass.isEmpty() || role.isEmpty()) {
 
             session.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin đăng ký");
+            session.setAttribute("email", email);
             request.getRequestDispatcher("register.jsp").forward(request, response);
             // Xử lý lỗi khi emai trùng
         } else if (user != null) {
             session.setAttribute("errorMessage", "Email trùng");
+            session.setAttribute("email", email);
             request.getRequestDispatcher("register.jsp").forward(request, response);
             // Xử lý lỗi khi mật khẩu nhập lại không đúng
         } else if (!password.equals(repeatPass)) {
             session.setAttribute("errorMessage", "Mật khẩu nhập lại không trùng");
+            session.setAttribute("email", email);
             request.getRequestDispatcher("register.jsp").forward(request, response);
         } else {
             // Xử lý thông tin đăng ký hợp lệ

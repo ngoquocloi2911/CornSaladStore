@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +21,7 @@
         <title>SB Admin 2 - Dashboard</title>
 
         <!-- Custom fonts for this template-->
-        <link href="./assets/admin/./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -213,13 +214,10 @@
                                         </div>
                                         <div class="mt-4 text-center small">
                                             <span class="mr-2">
-                                                <i class="fas fa-circle text-primary"></i> Direct
+                                                <i class="fas fa-circle text-primary"></i> Pending
                                             </span>
                                             <span class="mr-2">
-                                                <i class="fas fa-circle text-success"></i> Social
-                                            </span>
-                                            <span class="mr-2">
-                                                <i class="fas fa-circle text-info"></i> Referral
+                                                <i class="fas fa-circle text-success"></i> Finished
                                             </span>
                                         </div>
                                     </div>
@@ -231,7 +229,44 @@
 
                     </div>
                     <!-- /.container-fluid -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Pending Orders</h6>
+                        </div>
+                        <div class="card-body">
 
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Code</th>
+                                            <th>Status</th>
+                                            <th>UserId</th>
+                                            <th>#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:set var="index" value="0"/>
+                                        <c:forEach items="${orderPendingList}" var="order">
+                                            <c:set var="index" value="${index + 1}"/>
+                                            <tr >
+                                                <td>${index}</td>
+                                                <td> <a href="OrderItemServlet?orderId=${order.id}">${order.code}</td>
+                                                <td>${order.status}</td>
+                                                <td>${order.user.email}</td>
+                                                <td>
+                                                    <a href="EditOrderServlet?orderId=${order.id}">Edit</a>
+                                                </td>
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
                 <!-- End of Main Content -->
 
@@ -251,27 +286,30 @@
         </a>
 
         <script>
-            var labels = [<c:forEach items="${dateList}" var="date">"${date}",</c:forEach>]
-            var data = [<c:forEach items="${countEachDay}" var="count">${count},</c:forEach>]
-                </script>
+            var labels = [<c:forEach items="${dateList}" var="date">"${date}",</c:forEach>];
+            var data = [<c:forEach items="${earningEachDay}" var="earning">${earning},</c:forEach>];
+            
+            var pieLabel = ['Pending', 'Finish'];
+            var pieData = [${countOrderPending}, ${countOrderFinish}];
+        </script>
 
-                <!-- Bootstrap core JavaScript-->
-                <script src="./assets/admin/vendor/jquery/jquery.min.js"></script>
-                <script src="./assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="./assets/admin/vendor/jquery/jquery.min.js"></script>
+        <script src="./assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                <!-- Core plugin JavaScript-->
-                <script src="./assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="./assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                <!-- Custom scripts for all pages-->
-                <script src="./assets/admin/js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="./assets/admin/js/sb-admin-2.min.js"></script>
 
-                <!-- Page level plugins -->
-                <script src="./assets/admin/vendor/chart.js/Chart.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="./assets/admin/vendor/chart.js/Chart.min.js"></script>
 
-                <!-- Page level custom scripts -->
-                <script src="./assets/admin/js/demo/chart-area-demo.js"></script>
-                <script src="./assets/admin/js/demo/chart-pie-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="./assets/admin/js/demo/chart-area-demo.js"></script>
+        <script src="./assets/admin/js/demo/chart-pie-demo.js"></script>
 
-                </body>
+    </body>
 
-                </html>
+</html>

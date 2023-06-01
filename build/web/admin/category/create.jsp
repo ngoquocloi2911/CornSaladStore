@@ -42,11 +42,12 @@
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
-                 <!-- Topbar -->
-                    <%@include file="../inc/header.jsp" %>
-                    <!-- End of Topbar -->
+                <!-- Topbar -->
+                <%@include file="../inc/header.jsp" %>
+                <!-- End of Topbar -->
                 <!-- Main Content -->
                 <div class="container-fluid">
+                    <h1 class="h3 mb-2 text-gray-800">Create Category</h1>
                     <form action="CreateCategoryServlet" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
@@ -54,7 +55,7 @@
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Name</label>
+                            <label for="exampleInputEmail1">Picture</label>
                             <input type="text" name="thumbnail" class="form-control" placeholder="Enter link thumbnail">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>

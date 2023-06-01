@@ -52,6 +52,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </div>
                 <div class="form-sub-w3">
                     <input type="password" name="password" placeholder="Password" required="">
+                     
                     <div class="icon-w3">
                         <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                     </div>

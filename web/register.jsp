@@ -45,7 +45,8 @@
                 <h2>Fill out the form below to Register</h2>
                 <form action="RegisterServlet" method="post">
                     <div class="form-sub-w3">
-                        <input type="email" name="email" placeholder="email " required="">
+                        <input type="email" name="email" placeholder="email" value="${email}" required="">
+                        <c:remove var="email" scope="session" />
                         <div class="icon-w3">
 
                             <i class="fa-solid fa-envelope" aria-hidden="true"></i>

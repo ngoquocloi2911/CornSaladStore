@@ -200,6 +200,30 @@ public class OrderImpl implements OrderDao {
         }
         return count;
     }
+
+    @Override
+    public double earningOrderByDay(String date) {
+        double total = 0;
+        String sql = "SELECT * FROM orders where date(created_at)=?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, date);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String code = rs.getString("code");
+                String status = rs.getString("status");
+                int userId = rs.getInt("user_id");
+                Timestamp createdAt = rs.getTimestamp("created_at");
+
+                Order order = new Order(id, code, status, userId, createdAt);
+                total += order.getTotal();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
     
 
 }

@@ -44,7 +44,6 @@ public class LoginServlet extends BaseServlet {
         if (user == null) {
             response.sendRedirect("LoginServlet");
             session.setAttribute("errors", "Login Failed!!");
-
         } else if (user.getRole().equals("admin")) {
             response.sendRedirect("DashboardServlet");
             session.setAttribute("user", user);

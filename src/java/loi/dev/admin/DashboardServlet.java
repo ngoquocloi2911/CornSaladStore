@@ -49,15 +49,19 @@ public class DashboardServlet extends BaseAdminServlet {
 
         List<Order> orderPendingList = orderDao.findByStatus("pending");
         request.setAttribute("orderPendingList", orderPendingList);
+        request.setAttribute("countOrderPending", orderPendingList.size());
+
+        List<Order> orderFinishList = orderDao.findByStatus("finished");
+        request.setAttribute("countOrderFinish", orderFinishList.size());
 
         // Chart
         List<String> dateList = GetDateTime.getDates(Constants.NUMBER_DAY);
         request.setAttribute("dateList", dateList);
-        List<Integer> countEachDay = new ArrayList<>();
-         for(int i = 0; i < Constants.NUMBER_DAY; i++){
-            countEachDay.add(orderDao.countOrderByDay(dateList.get(i)));
+        List<Double> earningEachDay = new ArrayList<>();
+        for (int i = 0; i < Constants.NUMBER_DAY; i++) {
+            earningEachDay.add(orderDao.earningOrderByDay(dateList.get(i)));
         }
-        request.setAttribute("countEachDay", countEachDay);
+        request.setAttribute("earningEachDay", earningEachDay);
         request.getRequestDispatcher("admin/dashboard.jsp").include(request, response);
     }
 

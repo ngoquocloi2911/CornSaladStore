@@ -150,7 +150,7 @@
                             <div class="header__search">
                                 <form class="header__search-content" action="SearchServlet" method="get">
                                     <select name="categoryId" id="" class="header__search-select">
-                                        <option value="">All Category</option>
+                                        <option selected value="0">All Category</option>
                                         <c:forEach items="${categoryList}" var="category">
                                             <option value="${category.id}">${category.name}</option>
                                         </c:forEach>

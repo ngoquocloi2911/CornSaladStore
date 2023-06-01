@@ -26,6 +26,7 @@ public class CheckoutServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
             HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user == null) {

@@ -24,6 +24,7 @@ public class CartServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         HttpSession session = request.getSession();
         List<OrderItem> cart = (List<OrderItem>) session.getAttribute("cart");
         if (cart == null) {

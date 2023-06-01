@@ -76,7 +76,16 @@ public class Order {
         return DatabaseDao.getInstance().getOrderItemDao().findByOder(id);
     }
 
-      public User getUser() {
+    public User getUser() {
         return DatabaseDao.getInstance().getUserDao().find(userId);
+    }
+
+    public double getTotal() {
+        double total = 0;
+        List<OrderItem> orderItemList = getOrderItems();
+        for (OrderItem orderItem : orderItemList) {
+            total += orderItem.getPrice() * orderItem.getQuantity();
+        }
+        return total;
     }
 }

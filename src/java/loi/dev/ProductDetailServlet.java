@@ -22,6 +22,7 @@ public class ProductDetailServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         int productId = Integer.parseInt(request.getParameter("productId"));
         
         ProductDao productDao = DatabaseDao.getInstance().getProductDao();

@@ -52,17 +52,14 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
                             <input type="email" name="email" class="form-control" placeholder="Enter Email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Password</label>
                             <input type="text" name="password" class="form-control" placeholder="Enter password">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Repeat Password</label>
                             <input type="text" name="repeatPass" class="form-control" placeholder="Enter Repeat Password">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1" >Role:</label>
@@ -70,7 +67,10 @@
                                 <option value="User">User </option>
                                 <option value="Admin">Admin </option>
                             </select>
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <div class="form-text text-muted" >
+                                ${errorMessage}
+                                <c:remove var="errorMessage" scope="session" />
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>

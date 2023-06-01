@@ -21,6 +21,7 @@ public class CategoryServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         List<Product> productList = DatabaseDao.getInstance().getProductDao().findByCategory(categoryId);
         
