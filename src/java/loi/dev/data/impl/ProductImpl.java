@@ -53,7 +53,7 @@ public class ProductImpl implements ProductDao {
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
             stmt.setInt(4, product.getQuantity());
-            stmt.setInt(5, product.getView() + 1);
+            stmt.setInt(5, product.getView() );
             stmt.setInt(6, product.getCategoryId());
             stmt.setInt(7, product.getId());
 
@@ -64,6 +64,7 @@ public class ProductImpl implements ProductDao {
         }
         return false;
     }
+    
 
     @Override
     public boolean delete(int id) {
@@ -108,14 +109,12 @@ public class ProductImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> findAll(int limit) {
+    public List<Product> findAll() {
         // TODO Auto-generated method stub
         List<Product> proList = new ArrayList<>();
-        String sql = "SELECT * FROM PRODUCTS ORDER BY VIEW DESC LIMIT ?";
+        String sql = "SELECT * FROM PRODUCTS ORDER BY VIEW DESC ";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, limit);
-
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -165,12 +164,12 @@ public class ProductImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> hot() {
+    public List<Product> hot( int limit) {
         List<Product> proList = new ArrayList<>();
         String sql = "SELECT * FROM PRODUCTS ORDER BY VIEW DESC LIMIT ?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, Constants.VIEW_NUMBER);
+            stmt.setInt(1, limit);
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -195,7 +194,7 @@ public class ProductImpl implements ProductDao {
     @Override
     public List<Product> findByName(String key) {
         List<Product> proList = new ArrayList<>();
-        String sql = "SELECT * FROM PRODUCTS WHERE NAME LIKE ?";
+        String sql = "SELECT * FROM PRODUCTS WHERE NAME LIKE ? ORDER BY VIEW DESC ";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, "%" + key + "%");
@@ -252,7 +251,7 @@ public class ProductImpl implements ProductDao {
     @Override
     public List<Product> findByCategoryOfName(int categoryId, String key) {
         List<Product> proList = new ArrayList<>();
-        String sql = "SELECT * FROM PRODUCTS WHERE CATEGORY_ID = ? AND NAME LIKE ?";
+        String sql = "SELECT * FROM PRODUCTS WHERE CATEGORY_ID = ? AND NAME LIKE ? ORDER BY VIEW DESC";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, categoryId);
@@ -276,5 +275,24 @@ public class ProductImpl implements ProductDao {
         }
         return proList;
     }
+
+    @Override
+    public boolean updateView(Product product) {
+        String sql = "UPDATE PRODUCTS SET view = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+            stmt.setInt(1, product.getView()+1);
+            stmt.setInt(2, product.getId());
+
+            return stmt.execute();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+  
 
 }

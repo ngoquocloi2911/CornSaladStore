@@ -8,6 +8,7 @@ import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import loi.dev.BaseServlet;
 import loi.dev.data.dao.CategoryDao;
 import loi.dev.data.dao.DatabaseDao;
@@ -22,10 +23,11 @@ public class EditCategoryServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         HttpSession session = request.getSession();
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         Category category = DatabaseDao.getInstance().getCategoryDao().find(categoryId);
-        
-        request.setAttribute("category", category);
+
+        session.setAttribute("category", category);
         request.getRequestDispatcher("admin/category/edit.jsp").include(request, response);
     }
 
@@ -33,19 +35,25 @@ public class EditCategoryServlet extends BaseServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CategoryDao categoryDao = DatabaseDao.getInstance().getCategoryDao();
-        
+        HttpSession session = request.getSession();
+
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         Category category = categoryDao.find(categoryId);
-        
+
         String name = request.getParameter("name");
         String thumbnail = request.getParameter("thumbnail");
-        
+
         category.setName(name);
         category.setThumbnail(thumbnail);
-        
-        categoryDao.update(category);
-        
-        response.sendRedirect("IndexCategoryServlet");
+        if (name.isEmpty() || thumbnail.isEmpty()) {
+            session.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin");
+            request.getRequestDispatcher("admin/category/edit.jsp").forward(request, response);
+        } else {
+            categoryDao.update(category);
+
+            response.sendRedirect("IndexCategoryServlet");
+        }
+
     }
 
 }

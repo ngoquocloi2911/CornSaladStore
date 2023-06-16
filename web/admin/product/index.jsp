@@ -22,7 +22,7 @@
         <title>SB Admin 2 - Dashboard</title>
 
         <!-- Custom fonts for this template-->
-        <link href="./assets/admin/./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -49,10 +49,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                                                                                   href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800">PRODUCT</h1>
+                    <p class="mb-4">Danh sách tất cả mặt hàng có trong bảng product</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">

@@ -8,6 +8,7 @@ import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import loi.dev.BaseServlet;
 import loi.dev.data.dao.DatabaseDao;
 import loi.dev.data.model.Category;
@@ -16,7 +17,6 @@ import loi.dev.data.model.Category;
  *
  * @author ACER NITRO
  */
-
 public class CreateCategoryServlet extends BaseServlet {
 
     @Override
@@ -28,13 +28,22 @@ public class CreateCategoryServlet extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
         String name = request.getParameter("name");
         String thumbnail = request.getParameter("thumbnail");
-        Category category = new Category(name, thumbnail);
-        
-        DatabaseDao.getInstance().getCategoryDao().insert(category);
-        
-        response.sendRedirect("IndexCategoryServlet");
+
+        if (name.isEmpty() || thumbnail.isEmpty()) {
+
+            session.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin đăng ký");
+            request.getRequestDispatcher("admin/category/create.jsp").forward(request, response);
+        } else {
+            Category category = new Category(name, thumbnail);
+            DatabaseDao.getInstance().getCategoryDao().insert(category);
+
+            response.sendRedirect("IndexCategoryServlet");
+        }
+
     }
 
 }

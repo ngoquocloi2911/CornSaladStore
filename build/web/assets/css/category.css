@@ -279,6 +279,8 @@
 
 .w3-editor-img {
     margin: auto;
+    max-width: 300px;
+    width: 100%;
 }
 
 .w3-editor-widget {
@@ -286,6 +288,9 @@
     font-size: 1.6rem;
     opacity: 0.8;
     line-height: 2rem;
+}
+.w3-editor-widget strong{
+    line-height: 2.5rem;
 }
 
 .w3-editor-widget-heading {

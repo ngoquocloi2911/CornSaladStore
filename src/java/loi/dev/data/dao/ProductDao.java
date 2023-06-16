@@ -14,9 +14,9 @@ public interface ProductDao {
 
     public Product find(int id);
 
-    public List<Product> findAll(int limit);
+    public List<Product> findAll();
 
-    public List<Product> hot();
+    public List<Product> hot(int limit);
 
     public List<Product> findByCategory(int id);
 
@@ -25,5 +25,7 @@ public interface ProductDao {
     public List<Product> findByCategoryOfName(int categoryId, String key);
 
     public List<Product> relatedProductList(Product product);
+    
+    public boolean updateView(Product product);
 
 }

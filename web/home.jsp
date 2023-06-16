@@ -164,7 +164,7 @@
                 <!-- heading product -->
                 <h1 class="heading-title">Hot Products</h1>
                 <span class="heading-desc">
-                    Browse the collection of our best selling and top interesting products.
+                    Browse the collection of our best selling and top interesting products. Eye Catching Electronics Demo
                 </span>
             </div>
             <div class="row">
@@ -192,7 +192,10 @@
                                         <span class="product-short-desc">${product.description}</span>
                                         <h1 class="product-title">${product.name}</h1>
                                         <div class="product-price">
-                                            <span class="product-price-1">$${product.price} </span>
+                                            <span class="product-price-1">
+                                                <fmt:setLocale value = "en_US"/>
+                                                <fmt:formatNumber type="currency" value = "${product.price}" /> 
+                                            </span>
                                         </div>
                                         <button type="submit" class="_btn _btn-product">Add to cart</button>
                                     </form>

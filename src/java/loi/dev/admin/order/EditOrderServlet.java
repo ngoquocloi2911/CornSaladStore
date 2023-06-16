@@ -8,6 +8,7 @@ import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import loi.dev.BaseServlet;
 import loi.dev.data.dao.DatabaseDao;
 import loi.dev.data.dao.OrderDao;
@@ -22,11 +23,12 @@ public class EditOrderServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         OrderDao orderDao = DatabaseDao.getInstance().getOrderDao();
         int orderId = Integer.parseInt(request.getParameter("orderId"));
         Order order = orderDao.find(orderId);
 
-        request.setAttribute("order", order);
+        session.setAttribute("order", order);
         request.getRequestDispatcher("admin/order/edit.jsp").include(request, response);
 
     }
@@ -34,20 +36,30 @@ public class EditOrderServlet extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
         OrderDao orderDao = DatabaseDao.getInstance().getOrderDao();
-        
+
         int orderId = Integer.parseInt(request.getParameter("orderId"));
-        
+
         Order order = orderDao.find(orderId);
-        
+
         String code = request.getParameter("code");
         String status = request.getParameter("status");
-        
-        order.setCode(code);
-        order.setStatus(status);
-        
-        orderDao.update(order);
-        response.sendRedirect("IndexOrderServlet");
-    }
 
-}
+        order.setCode(code);
+
+        order.setStatus(status);
+
+        if (code.isEmpty() || status.isEmpty()) {
+            session.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin");
+            request.getRequestDispatcher("admin/order/edit.jsp").forward(request, response);
+        }
+        else{
+            orderDao.update(order);
+            response.sendRedirect("IndexOrderServlet");
+        }
+            
+        }
+
+    }

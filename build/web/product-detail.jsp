@@ -123,7 +123,7 @@
             <div class="row mrt-48">
                 <div class="col-md-6">
                     <div class="w3-editor-container">
-                        <img src="./assets/img/4-300x300.jpg" alt="" class="w3-editor-img">
+                        <img src="${product.thumbnail}" alt="" class="w3-editor-img">
                     </div>
                 </div>
                 <div class="col-md-6">

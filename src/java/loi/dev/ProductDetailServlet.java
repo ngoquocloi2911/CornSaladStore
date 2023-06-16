@@ -30,6 +30,7 @@ public class ProductDetailServlet extends BaseServlet {
         
         List<Product> relatedProductList = productDao.relatedProductList(product);
         
+        productDao.updateView(product);
         request.setAttribute("product", product);
         request.setAttribute("relatedProductList", relatedProductList);
         request.getRequestDispatcher("product-detail.jsp").include(request, response);

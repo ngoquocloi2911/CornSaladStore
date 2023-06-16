@@ -18,10 +18,10 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Dashboard</title>
+        <title>CornSalad Admin - Dashboard</title>
 
         <!-- Custom fonts for this template-->
-        <link href="./assets/admin/./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -52,17 +52,14 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Picture</label>
                             <input type="file" name="photos" multiple="multiple" />
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
                             <input type="text" name="name" class="form-control" placeholder="Enter name">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
                             <input type="text" name="description" class="form-control" placeholder="Enter Description">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Category</label>
@@ -71,17 +68,14 @@
                                     <option value="${category.id}">${category.name}</option>
                                 </c:forEach>
                             </select>
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Price</label>
                             <input type="number" name="price" class="form-control" placeholder="Enter Price">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Quantity</label>
                             <input type="number" name="quantity" class="form-control" placeholder="Enter Quantity">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>

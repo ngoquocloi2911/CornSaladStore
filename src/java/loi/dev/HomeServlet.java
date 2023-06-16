@@ -9,9 +9,9 @@ import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import loi.dev.data.dao.DatabaseDao;
+import loi.dev.data.dao.ProductDao;
 import loi.dev.data.model.Category;
 import loi.dev.data.model.Product;
 import loi.dev.util.Constants;
@@ -26,8 +26,9 @@ public class HomeServlet extends BaseServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         super.doGet(request, response);
-        List<Product> productList = DatabaseDao.getInstance().getProductDao().findAll(Constants.VIEW_LIMIT);
-        List<Product> hotProductList = DatabaseDao.getInstance().getProductDao().hot();
+        ProductDao productDao = DatabaseDao.getInstance().getProductDao();
+        List<Product> productList = productDao.hot(Constants.VIEW_LIMIT);
+        List<Product> hotProductList = productDao.hot(Constants.VIEW_NUMBER);
         List<Category> hotcategoryList = DatabaseDao.getInstance().getCategoryDao().hotCategory();
         request.setAttribute("productList", productList);
         request.setAttribute("hotProductList", hotProductList);

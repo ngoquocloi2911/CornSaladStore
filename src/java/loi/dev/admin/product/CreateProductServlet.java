@@ -1,4 +1,3 @@
- 
 package loi.dev.admin.product;
 
 import java.io.IOException;
@@ -6,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import loi.dev.BaseServlet;
 import loi.dev.data.dao.DatabaseDao;
 import loi.dev.data.model.Product;
@@ -20,9 +20,9 @@ import loi.dev.util.UploadFileHelper;
  * @author ACER NITRO
  */
 @MultipartConfig(
-	fileSizeThreshold = 1024 * 1024 * 10, // 10 MB
-	maxFileSize = 1024 * 1024 * 50, // 50 MB
-	maxRequestSize = 1024 * 1024 * 100 // 100 MB
+        fileSizeThreshold = 1024 * 1024 * 10, // 10 MB
+        maxFileSize = 1024 * 1024 * 50, // 50 MB
+        maxRequestSize = 1024 * 1024 * 100 // 100 MB
 )
 public class CreateProductServlet extends BaseServlet {
 
@@ -30,7 +30,7 @@ public class CreateProductServlet extends BaseServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Category> categoryList = DatabaseDao.getInstance().getCategoryDao().findAll();
-        
+
         request.setAttribute("categoryList", categoryList);
         request.getRequestDispatcher("admin/product/create.jsp").include(request, response);
     }
@@ -38,22 +38,37 @@ public class CreateProductServlet extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        double price = Double.parseDouble(request.getParameter("price")) ;
-        int quantity = Integer.parseInt(request.getParameter("quantity")) ;
-        int categoryId = Integer.parseInt(request.getParameter("categoryId")) ;
+        double price = Double.parseDouble(request.getParameter("price"));
+        int quantity = 0;
+        if(request.getParameter("quantity") == null)
+        {
+            session.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin");
+            request.getRequestDispatcher("admin/product/create.jsp").forward(request, response); 
+           
+        }else
+        {
+            quantity = Integer.parseInt(request.getParameter("quantity"));
+        }
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         Product product = new Product(name, description, price, quantity, categoryId);
-        
+
+        if (name.isEmpty() || description.isEmpty() ) {
+            session.setAttribute("errorMessage", "Vui lòng điền đầy đủ thông tin");
+            request.getRequestDispatcher("admin/product/edit.jsp").forward(request, response);
+        }
+
         int productId = DatabaseDao.getInstance().getProductDao().insert(product);
-        
+
         createGallery(productId, request);
 
         response.sendRedirect("IndexProductServlet");
 
     }
 
-    private void createGallery(int productId, HttpServletRequest request){
+    private void createGallery(int productId, HttpServletRequest request) {
         List<String> photos = UploadFileHelper.uploadFile(Constants.UPLOAD_DIR, request);
         for (int i = 0; i < photos.size(); i++) {
             Gallery g = new Gallery(Constants.UPLOAD_DIR + "/" + photos.get(i), productId);

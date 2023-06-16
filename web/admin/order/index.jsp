@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+      <head>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,10 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Dashboard</title>
+        <title>CornSalad Admin - Dashboard</title>
 
         <!-- Custom fonts for this template-->
-        <link href="./assets/admin/./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -52,9 +52,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Order</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                                                                                   href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <p class="mb-4">Danh sách các đơn hàng</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -70,7 +68,7 @@
                                             <th>STT</th>
                                             <th>Code</th>
                                             <th>Status</th>
-                                            <th>UserId</th>
+                                            <th>Email</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>

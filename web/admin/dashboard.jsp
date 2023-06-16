@@ -18,7 +18,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>SB Admin 2 - Dashboard</title>
+        <title>CornSalad Admin - Dashboard</title>
 
         <!-- Custom fonts for this template-->
         <link href="./assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -205,7 +205,7 @@
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" href="#">Something else here</a>
                                             </div>
-                                        </div>
+                                        </div>  
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">

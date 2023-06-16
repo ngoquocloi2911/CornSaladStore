@@ -34,8 +34,8 @@ public class DashboardServlet extends BaseAdminServlet {
         int numberUser = userDao.findAll().size();
 
         ProductDao productDao = DatabaseDao.getInstance().getProductDao();
-        List<Product> productList = productDao.findAll(20);
-        int numberProduct = productDao.findAll(20).size();
+        List<Product> productList = productDao.findAll();
+        int numberProduct = productDao.findAll().size();
 
         OrderDao orderDao = DatabaseDao.getInstance().getOrderDao();
         int numberOrder = orderDao.findAll().size();

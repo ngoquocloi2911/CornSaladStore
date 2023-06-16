@@ -12,7 +12,6 @@ import java.util.List;
 import loi.dev.BaseServlet;
 import loi.dev.data.dao.DatabaseDao;
 import loi.dev.data.model.Product;
-import loi.dev.util.Constants;
 
 /**
  *
@@ -22,7 +21,7 @@ public class IndexProductServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> productList = DatabaseDao.getInstance().getProductDao().findAll(Constants.ALL);
+        List<Product> productList = DatabaseDao.getInstance().getProductDao().findAll();
         request.setAttribute("productList", productList);
         request.getRequestDispatcher("admin/product/index.jsp").include(request, response);
     }
